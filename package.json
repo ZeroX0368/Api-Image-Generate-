@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/node": "^22.13.11",
-    "express": "^5.1.0"
+    "@types/node": "^22.13.11"
   }
 }
