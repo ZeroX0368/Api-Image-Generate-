@@ -15,7 +15,7 @@ app.get('/api/image', async (req, res) => {
     }
 
     // Replace with your actual API key
-    const API_KEY = process.env.RUNWARE_API_KEY;
+    const API_KEY = process.env.RUNWARE_API_KEY || 'ZXoC8J6Tqwj4eUBubYntSCNFhIpd38sw';
     
     const requestBody = [
       {
@@ -33,6 +33,8 @@ app.get('/api/image', async (req, res) => {
       }
     ];
 
+    console.log('Making request with prompt:', prompt);
+
     const response = await fetch('https://api.runware.ai/v1', {
       method: 'POST',
       headers: {
@@ -41,11 +43,17 @@ app.get('/api/image', async (req, res) => {
       body: JSON.stringify(requestBody)
     });
 
+    const data = await response.json();
+    
     if (!response.ok) {
-      throw new Error(`API request failed: ${response.status}`);
+      console.error('API Error Details:', data);
+      return res.status(response.status).json({ 
+        error: 'API request failed', 
+        status: response.status,
+        details: data 
+      });
     }
 
-    const data = await response.json();
     res.json(data);
 
   } catch (error) {
