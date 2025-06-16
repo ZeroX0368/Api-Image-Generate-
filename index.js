@@ -15,7 +15,7 @@ app.get('/api/image', async (req, res) => {
     }
 
     // Replace with your actual API key
-    const API_KEY = process.env.RUNWARE_API_KEY;
+    const API_KEY = '4mXQ1DQ3dFoAWPGNLQBfQV6chN09V0Oh';
     
     const requestBody = [
       {
